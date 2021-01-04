@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
   content: { type: String, required: true },
+  published: { type: Boolean, required: true },
 });
 
 module.exports = mongoose.model("Comment", CommentSchema);
