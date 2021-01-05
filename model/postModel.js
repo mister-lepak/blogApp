@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const { DateTime } = require("luxon");
 
 const PostSchema = new Schema({
-  name: { type: String, required: true, maxlength: 50 },
+  title: { type: String, required: true, maxlength: 50 },
   content: { type: String, required: true },
   published: { type: Boolean, required: true },
   timeStamp: { type: Date, default: Date.now },
