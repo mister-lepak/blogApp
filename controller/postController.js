@@ -16,3 +16,20 @@ exports.index = (req, res, next) => {
     }
   );
 };
+
+exports.postDetail = (req, res, next) => {
+  async.parallel(
+    {
+      post: (callback) => {
+        Post.find(req.params.id)
+          .populate("comment")
+          .populate("user")
+          .exec(callback);
+      },
+    },
+    (err, result) => {
+      if (err) return next(err);
+      res.json(result.post);
+    }
+  );
+};
