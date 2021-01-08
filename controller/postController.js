@@ -1,27 +1,22 @@
 const Post = require("../model/postModel");
 require("../model/userModel");
-require("../model/commentModel");
+const Comment = require("../model/commentModel");
 const async = require("async");
 
 exports.index = (req, res, next) => {
   async.parallel(
     {
       posts: (callback) => {
-        Post.find()
-          .populate({
-            path: "comment",
-            populate: {
-              path: "user",
-            },
-          })
-          .populate("user")
-          .exec(callback);
+        Post.find().populate("user").exec(callback);
+      },
+      comments: (callback) => {
+        Comment.find().populate("user").exec(callback);
       },
     },
     (err, result) => {
       if (err) return next(err);
       // console.log(result.posts);
-      res.json(result.posts);
+      res.json(result);
     }
   );
 };

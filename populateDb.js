@@ -36,11 +36,12 @@ const userCreate = (username, password, cb) => {
   });
 };
 
-const commentCreate = (content, published, user, cb) => {
+const commentCreate = (content, published, user, post, cb) => {
   commentDetail = {
     content,
     published,
     user,
+    post,
   };
 
   const comment = new Comment(commentDetail);
@@ -55,13 +56,12 @@ const commentCreate = (content, published, user, cb) => {
   });
 };
 
-const postCreate = (title, content, published, user, comment, cb) => {
+const postCreate = (title, content, published, user, cb) => {
   postDetail = {
     title,
     content,
     published,
     user,
-    comment,
   };
 
   const post = new Post(postDetail);
@@ -87,27 +87,29 @@ const createUser = (cb) => {
   );
 };
 
-const createComment = (cb) => {
+const createPost = (cb) => {
   async.series(
     [
       (callback) => {
-        commentCreate("Testing Comment", true, users[0], callback);
+        postCreate("Test", "Testing Post", true, users[0], callback);
       },
     ],
     cb
   );
 };
 
-const createPost = (cb) => {
+const createComment = (cb) => {
   async.series(
     [
       (callback) => {
-        postCreate(
-          "Test",
-          "Testing Post",
+        commentCreate("Testing Comment", true, users[0], posts[0], callback);
+      },
+      (callback) => {
+        commentCreate(
+          "Testing Comment again!",
           true,
           users[0],
-          comments[0],
+          posts[0],
           callback
         );
       },
