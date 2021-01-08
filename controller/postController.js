@@ -7,11 +7,20 @@ exports.index = (req, res, next) => {
   async.parallel(
     {
       posts: (callback) => {
-        Post.find().populate("comment").populate("user").exec(callback);
+        Post.find()
+          .populate({
+            path: "comment",
+            populate: {
+              path: "user",
+            },
+          })
+          .populate("user")
+          .exec(callback);
       },
     },
     (err, result) => {
       if (err) return next(err);
+      // console.log(result.posts);
       res.json(result.posts);
     }
   );
