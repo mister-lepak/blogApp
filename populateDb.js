@@ -119,7 +119,7 @@ const createComment = (cb) => {
 };
 
 async.series(
-  [createUser, createComment, createPost],
+  [createUser, createPost, createComment],
 
   (err, results) => {
     if (err) {

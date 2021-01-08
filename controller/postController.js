@@ -10,7 +10,7 @@ exports.index = (req, res, next) => {
         Post.find().populate("user").exec(callback);
       },
       comments: (callback) => {
-        Comment.find().populate("user").exec(callback);
+        Comment.find().populate("user").populate("post").exec(callback);
       },
     },
     (err, result) => {
