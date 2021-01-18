@@ -4,11 +4,11 @@ const { DateTime } = require("luxon");
 
 const PostSchema = new Schema(
   {
-    title: { type: String, required: true, maxlength: 50 },
+    title: { type: String, required: true },
     content: { type: String, required: true },
-    published: { type: Boolean, required: true },
+    // published: { type: Boolean, required: true },
     timeStamp: { type: Date, default: Date.now },
-    user: { type: Schema.Types.ObjectId, ref: "User" },
+    username: { type: String, required: true },
     // comment: { type: Schema.Types.ObjectId, ref: "Comment" },
   },
   {
@@ -18,7 +18,7 @@ const PostSchema = new Schema(
 );
 
 PostSchema.virtual("url").get(() => {
-  return "/post/";
+  return "/post/" + this._id;
 });
 
 PostSchema.virtual("timeStampFormatted").get(() => {
