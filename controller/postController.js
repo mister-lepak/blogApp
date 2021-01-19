@@ -109,13 +109,29 @@ exports.postDeletePost = (req, res, next) => {
       post: (callback) => {
         Post.findById(req.params.id).exec(callback);
       },
+      comments: (callback) => {
+        Comment.find({ post: req.params.id }).exec(callback);
+      },
     },
     (err, result) => {
       if (err) return next(err);
-      Post.findByIdAndRemove(req.params.id, function deletePost(err) {
-        if (err) return next(err);
-        res.json({});
-      });
+      if (result.comments.length > 0) {
+        // console.log(result.comments);
+        Comment.deleteMany({ post: req.params.id }, (err) => {
+          if (err) return next(err);
+          // res.json({});
+        });
+        Post.findByIdAndRemove(req.params.id, function deletePost(err) {
+          if (err) return next(err);
+          res.json({});
+        });
+        console.log("successfully  delete all comments first!");
+      } else {
+        Post.findByIdAndRemove(req.params.id, function deletePost(err) {
+          if (err) return next(err);
+          res.json({});
+        });
+      }
     }
   );
 };
