@@ -9,10 +9,6 @@ const { post } = require("./users");
 /* GET home page. */
 router.get("/", postController.index);
 
-router.get("/posts", (req, res, next) => {
-  res.send("blog posts list");
-});
-
 router.get("/post/create", (req, res, next) => {
   res.send("blog create get");
 });

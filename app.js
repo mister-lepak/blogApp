@@ -17,7 +17,8 @@ var usersRouter = require("./routes/users");
 
 const { username, password } = require("./model/userModel");
 
-const mongoDb = process.env.MONGODB_URI || process.env.mongoDb;
+// const mongoDb = process.env.MONGODB_URI || process.env.mongoDb;
+const mongoDb = process.env.mongoDb;
 
 mongoose.connect(mongoDb, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
