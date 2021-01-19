@@ -83,7 +83,7 @@ exports.postCreatePost = [
           console.log(post);
           return next(err);
         }
-        res.redirect("/dashboard");
+        res.json(post);
       });
     }
   },
@@ -114,7 +114,7 @@ exports.postDeletePost = (req, res, next) => {
       if (err) return next(err);
       Post.findByIdAndRemove(req.params.id, function deletePost(err) {
         if (err) return next(err);
-        res.redirect("/dashboard");
+        res.json({});
       });
     }
   );
