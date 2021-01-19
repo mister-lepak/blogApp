@@ -83,7 +83,7 @@ exports.postCreatePost = [
           console.log(post);
           return next(err);
         }
-        res.json(post);
+        res.json({});
       });
     }
   },
