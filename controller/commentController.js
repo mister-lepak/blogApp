@@ -29,7 +29,7 @@ exports.commentCreatePost = [
           console.log("error while saving");
           return next(err);
         }
-        res.send("Success!");
+        res.json({});
       });
     }
   },
