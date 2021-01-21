@@ -25,7 +25,7 @@ exports.index = (req, res, next) => {
       if (err) return next(err);
       // console.log(result.comments);
       res.json(result);
-      res.sendFile(path.join(__dirname, "build", "index.html"));
+      // res.sendFile(path.join(__dirname, "build", "index.html"));
     }
   );
 };
