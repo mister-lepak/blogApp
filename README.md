@@ -16,3 +16,8 @@ Fullstack Tech:
 ## Where to visit the live preview?
 
 Follow the link below:
+Refer to the Client side code repo here:
+https://github.com/mrlepak/blogAppClient
+
+Refer to the github pages link below:
+https://mrlepak.github.io/blogAppClient/
