@@ -7,7 +7,7 @@ const commentController = require("../controller/commentController");
 const { post } = require("./users");
 
 /* GET home page. */
-router.get("/", postController.index);
+router.get("/*", postController.index);
 
 router.get("/post/create", (req, res, next) => {
   res.send("blog create get");
